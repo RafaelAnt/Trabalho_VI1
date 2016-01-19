@@ -10,8 +10,10 @@
 		</attributes>
 		<scenes>
 			<scene name="MyScene" param="UNITIZE">
-				<ROTATE x="1.0" y="0.0" z="0.0" w="90"/>
-				<file name="../../models/Teapot.3ds"/>
+				<!--ROTATE x="1.0" y="0.0" z="0.0" w="90"/-->
+				<SCALE x="5" y="5" z="5" />
+				<!--file name="Models/cube.obj"/-->
+				<file name="Models/mount.blend1.3ds"/>
 				<!--file name="../../models/cow.obj"/-->
 			</scene>
 		</scenes>
@@ -28,7 +30,7 @@
 				<TYPE value="PERSPECTIVE"/>
 				<FOV value=60/>
 				<NEAR value= 0.001/>
-				<FAR value= 10/>
+				<FAR value= 10000/>
 				<POSITION x=0 y=0 z=3 />
 				<VIEW x=0 y=0 z=-1.0 />
 			</camera>

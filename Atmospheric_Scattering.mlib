@@ -2,8 +2,8 @@
 <materialLib name="Atmospheric_Scattering">
 	<shaders>
 		<shader name="SkyFromSpace"	
-				vs = "Shaders/SkyFromSpace.vert" 
-				ps = "Shaders/SkyFromSpace.frag" />
+				vs = "Shaders/rafa_textura_teste.vert" 
+				ps = "Shaders/rafa_textura_teste.frag" />
 
 	</shaders>
 	
