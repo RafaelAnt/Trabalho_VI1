@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\SkyFromAtmosphere.shader">
+    <Files>
+      <File FileName="Assets\Shaders\GroundFromSpace.shader" Line="21" Column="4" />
+      <File FileName="Assets\Shaders\SkyFromSpace.shader" Line="22" Column="4" />
+      <File FileName="Assets\Scripts\Init.cs" Line="65" Column="18" />
+      <File FileName="Assets\Shaders\GroundFromAtmosphere.shader" Line="56" Column="66" />
+      <File FileName="Assets\Shaders\SkyFromAtmosphere.shader" Line="59" Column="66" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
