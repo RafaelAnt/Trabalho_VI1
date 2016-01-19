@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<materialLib name="Atmospheric_Scattering">
+	<shaders>
+		<shader name="SkyFromSpace"	
+				vs = "Shaders/SkyFromSpace.vert" 
+				ps = "Shaders/SkyFromSpace.frag" />
+
+	</shaders>
+	
+	<materials>
+		<material name="SkyFromSpace">
+			<shader name="SkyFromSpace">
+				<values>
+					<valueof uniform="PVM" 
+							 type="RENDERER" context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							 
+					<valueof uniform="width" 
+							 type="COLOR" context="CURRENT" 
+							 component="width" />
+					
+					<valueof uniform="div" 
+							 type="COLOR" context="CURRENT" 
+							 component="div" />
+							 
+					<valueof uniform="gap" 
+							 type="COLOR" context="CURRENT" 
+							 component="gap" />
+							 
+					<valueof uniform="cor1" 
+							 type="COLOR" context="CURRENT" 
+							 component="cor1" />
+							 
+					<valueof uniform="cor2" 
+							 type="COLOR" context="CURRENT" 
+							 component="cor2" />
+
+				</values>
+			</shader>
+		</material>
+
+
+	</materials>
+</materialLib>

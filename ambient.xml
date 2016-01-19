@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<project name="Atmospheric Scattering" >
+	<assets><!-- width="512" height="512" -->
+		<attributes>
+			<attribute context="COLOR" name="width" type="FLOAT" value=0.5 />
+			<attribute context="COLOR" name="div" type="FLOAT" value=8.0 />
+			<attribute context="COLOR" name="gap" type="FLOAT" value=0.04 />
+			<attribute context="COLOR" name="cor1" type="VEC4" r=1.0 g=0.0 b=0.0 />
+			<attribute context="COLOR" name="cor2" type="VEC4" r=0.0 g=1.0 b=0.0 />
+		</attributes>
+		<scenes>
+			<scene name="MyScene" param="UNITIZE">
+				<ROTATE x="1.0" y="0.0" z="0.0" w="90"/>
+				<file name="../../models/Teapot.3ds"/>
+				<!--file name="../../models/cow.obj"/-->
+			</scene>
+		</scenes>
+		
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+			</viewport>
+		</viewports>
+		
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<TYPE value="PERSPECTIVE"/>
+				<FOV value=60/>
+				<NEAR value= 0.001/>
+				<FAR value= 10/>
+				<POSITION x=0 y=0 z=3 />
+				<VIEW x=0 y=0 z=-1.0 />
+			</camera>
+		</cameras>
+		
+		<lights>
+			<light name="Sun">
+				<DIRECTION x=-2 y=-1 z=-2 />
+			</light>
+		</lights>
+		
+		<materialLibs>
+			<materialLib filename="Atmospheric_Scattering.mlib" />
+		</materialLibs>
+	</assets>
+	
+	<pipelines>
+		<pipeline name="lighting" default="true">
+			<pass class="default" name="pass1">
+				<scenes>
+					<scene name="MyScene" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="*">
+						<shader fromMaterial ="SkyFromSpace" fromLibrary="Atmospheric_Scattering" />
+					</map>
+				</injectionMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>
+
