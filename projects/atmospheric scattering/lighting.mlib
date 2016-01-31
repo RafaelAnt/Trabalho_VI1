@@ -1,5 +1,12 @@
 <?xml version="1.0" ?>
 <materialLib name="Lighting">
+
+	<textures>
+		<texture 	name="mundo_tex"
+					filename="../../Models/Textures/BlueMarbleCloudy.png"
+					mipmap=true	/>		
+	</textures>
+
 	<shaders>
 		<shader name="diffPerVertex"
 				vs = "shaders/dirdif.vert" 
@@ -17,9 +24,13 @@
 				vs = "shaders/SkyFromSpace.vert"
 				ps = "shaders/SkyFromSpace.frag" />
 				
-		<shader name="AntiAliasing"
+		<!--shader name="AntiAliasing"
 				vs = "shaders/anti-aliasing.vert"
-				ps = "shaders/anti-aliasing.frag" />
+				ps = "shaders/anti-aliasing.frag" /-->
+				
+		<shader name="mundo"
+				vs = "shaders/mundo.vert"
+				ps = "shaders/mundo.frag" />
 
 	</shaders>
 	
@@ -163,7 +174,7 @@
 			</shader>
 		</material>
 
-		<material name="AntiAliasing">
+		<!--material name="AntiAliasing">
 			<shader name="AntiAliasing">
 				<values>
 					<valueof uniform="PVM" 
@@ -198,7 +209,51 @@
 
 				</values>
 			</shader>
+		</material-->
+		
+		
+		<material name="mundo">
+			<shader name="mundo">
+				<values>
+					<valueof uniform="PVM" 
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							 
+					<valueof uniform="VM" 
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="VIEW_MODEL" />
+							 
+					<valueof uniform="V" 
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="VIEW" />
+							 
+					<valueof uniform="mat_normal"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="NORMAL" />
+							 
+					<valueof uniform="light_pos" 
+							 type="LIGHT"
+							 context="Sun"
+							 component="POSITION" />
+							 
+					<valueof uniform="mundo_tex" 
+							 type="MATERIAL_TEXTURE"
+							 context="CURRENT" 
+							 component="UNIT" id=0 />
+
+
+				</values>
+			</shader>
+			
+			<textures>
+				<texture UNIT="0" name="mundo_tex"/>
+			</textures>
 		</material>
+					
 		
 	</materials>
 </materialLib>

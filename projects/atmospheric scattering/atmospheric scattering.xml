@@ -4,11 +4,12 @@
 		
 		<scenes>
 			<scene name="Earth" param="UNITIZE">
-				<SCALE x=10000 y=10000 z=10000/>
+				<SCALE x=1 y=1 z=1/>
+				<ROTATE x="1" y="0" z="0" w="-90"/>
 				<file name="../../Models/sphere1.obj"/>
 			</scene>
 			<scene name="Atmosphere" param="UNITIZE">
-				<SCALE x=10250 y=10250 z=10250/>
+				<SCALE x=1.25 y=1.25 z=1.25/>
 				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
@@ -26,7 +27,7 @@
 				<FOV value=60/>
 				<NEAR value= 0.3/>
 				<FAR value= 110000/>
-				<POSITION x=20000 y=0 z=0 />
+				<POSITION x=2 y=0 z=0 />
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
@@ -56,7 +57,10 @@
 				</lights>
 				<injectionMaps>
 					<map toMaterial="sphere1">
-						<shader fromMaterial ="diffAmbSpecPerPixel" fromLibrary="Lighting" />
+						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
+						<textures>
+							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
+						</textures>
 					</map>
 					<map toMaterial="sphere2">
 						<state name="cull_front" fromLibrary="Lighting" />
