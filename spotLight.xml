@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<project name="Point Light" >
+	<assets><!-- width="512" height="512" -->
+		
+		<scenes>
+			<scene name="MySceneC" param="UNITIZE">
+				<SCALE x=10000 y=10000 z=10000/>
+				<file name="../../models/sphere1.obj"/>
+			</scene>
+			<scene name="MySceneC2" param="UNITIZE">
+				<SCALE x=10250 y=10250 z=10250/>
+				<file name="../../models/sphere2.obj"/>
+			</scene>
+		</scenes>
+		
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+			</viewport>
+		</viewports>
+		
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<TYPE value="PERSPECTIVE"/>
+				<FOV value=60/>
+				<NEAR value= 0.3/>
+				<FAR value= 110000/>
+				<POSITION x=20000 y=0 z=0 />
+				<LOOK_AT_POINT x=0 y=0 z=0 />
+			</camera>
+		</cameras>
+		
+		<lights>
+			<light name="Sun">
+				<POSITION x=0 y=0 z=0 />
+				<DIRECTION x=0 y=-1 z=0 />
+			</light>
+		</lights>
+		
+		<materialLibs>
+			<materialLib filename="lighting.mlib" />
+		</materialLibs>
+	</assets>
+	
+	<pipelines>
+		<pipeline name="lighting" default="true">
+			<pass class="default" name="pass1">
+				<scenes>
+					<scene name="MySceneC" />
+					<scene name="MySceneC2" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="sphere1">
+						<shader fromMaterial ="diffAmbSpecPerPixel" fromLibrary="Lighting" />
+					</map>
+					<map toMaterial="sphere2">
+						<state name="cull_front" fromLibrary="Lighting" />
+ 						<shader fromMaterial ="diffAmbSpecPerPixel2" fromLibrary="Lighting" />
+					</map>
+				</injectionMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>
