@@ -1,15 +1,15 @@
 <?xml version="1.0" ?>
-<project name="Point Light" >
+<project name="Atmospheric Scattering" >
 	<assets><!-- width="512" height="512" -->
 		
 		<scenes>
-			<scene name="MySceneC" param="UNITIZE">
+			<scene name="Earth" param="UNITIZE">
 				<SCALE x=10000 y=10000 z=10000/>
-				<file name="../../models/sphere1.obj"/>
+				<file name="../../Models/sphere1.obj"/>
 			</scene>
-			<scene name="MySceneC2" param="UNITIZE">
+			<scene name="Atmosphere" param="UNITIZE">
 				<SCALE x=10250 y=10250 z=10250/>
-				<file name="../../models/sphere2.obj"/>
+				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
 		
@@ -47,8 +47,8 @@
 		<pipeline name="lighting" default="true">
 			<pass class="default" name="pass1">
 				<scenes>
-					<scene name="MySceneC" />
-					<scene name="MySceneC2" />
+					<scene name="Earth" />
+					<scene name="Atmosphere" />
 				</scenes>
 				<camera name="MainCamera" />
 				<lights>
