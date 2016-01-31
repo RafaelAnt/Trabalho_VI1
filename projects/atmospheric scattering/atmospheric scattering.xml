@@ -9,7 +9,7 @@
 				<file name="../../Models/sphere1.obj"/>
 			</scene>
 			<scene name="Atmosphere" param="UNITIZE">
-				<SCALE x=1.25 y=1.25 z=1.25/>
+				<SCALE x=1.15 y=1.15 z=1.15/>
 				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
@@ -64,7 +64,7 @@
 					</map>
 					<map toMaterial="sphere2">
 						<state name="cull_front" fromLibrary="Lighting" />
- 						<shader fromMaterial ="diffAmbSpecPerPixel2" fromLibrary="Lighting" />
+ 						<shader fromMaterial ="SkyFromSpace" fromLibrary="Lighting" />
 					</map>
 				</injectionMaps>
 			</pass>
