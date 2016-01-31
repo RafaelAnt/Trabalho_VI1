@@ -1,0 +1,3 @@
+Efeitos da atmosfera NVIDEA
+http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter16.html
+
