@@ -1,22 +1,28 @@
 #version 330
 
 
-
-//uniform vec3 v3LightPos;		// The direction vector to the light source = uniform	vec4 l_dir;??
-uniform	vec4 l_dir;	   // global space
-uniform vec4 c_pos;    //camera position
-uniform	mat4 m_viewModel;
-uniform	mat4 m_pvm;
 in vec4 position;	// local space
 in vec2 texCoord0;
 
 
+//uniform vec3 v3LightPos;		// The direction vector to the light source = uniform	vec4 l_dir;??
+layout (std140) uniform Lights{
+	vec4 light_dir;	   // global space
+};
 
+layout (std140) uniform Camera{
+	vec4 c_pos;    //camera position
+};
+	
 
-out Data
-	{
-		vec4  pos /*: SV_POSITION*/;
-		vec2  uv /*: TEXCOORD0*/;
+layout (std140) uniform Matrices{
+	mat4 m_viewModel;
+	mat4 m_pvm;
+};
+
+out Data{
+		vec4 pos /*: SV_POSITION*/;
+		vec2 uv /*: TEXCOORD0*/;
 		vec3 t0 /*: TEXCOORD1*/;
 		vec3 c0 /*: COLOR0*/;
 		vec3 c1 /*: COLOR1*/;
@@ -79,7 +85,7 @@ void main () {
 	{
 		float fHeight = length(v3SamplePoint);
 		float fDepth = exp(fScaleOverScaleDepth * (fInnerRadius - fHeight));
-		float fLightAngle = dot(vec3(l_dir), v3SamplePoint) / fHeight;
+		float fLightAngle = dot(vec3(light_dir), v3SamplePoint) / fHeight;
 		float fCameraAngle = dot(v3Ray, v3SamplePoint) / fHeight;
 		float x2 = 1.0 - fLightAngle;
 		float scaleFLightAngle = 0.25 * exp(-0.00287 + x2*(0.459 + x2*(3.83 + x2*(-6.80 + x2*5.25))));

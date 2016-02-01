@@ -1,7 +1,8 @@
 #version 330 
 
+//layout (std140) uniform Textures{
 uniform sampler2D mundo_tex;
-
+//};
 
 in Data {
   vec2 texCoord;
@@ -19,12 +20,13 @@ void main(){
 	
 	vec4 spec = vec4 (0);
 	
-	//float intensity = max(dot( l, n ), 0.0 );
+	float intensity = max(dot( l, n ), 0.0 );
 	//float cloud = texture(clouds, DataIn.texCoord).r;
 	
 	vec4 c;
 	
-	c=texture(mundo_tex,DataIn.texCoord);
+	c = texture(mundo_tex,DataIn.texCoord) * intensity ;
+
 	
 	/*if(intensity > 0.5){
 	

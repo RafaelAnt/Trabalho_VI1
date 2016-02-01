@@ -1,10 +1,15 @@
 #version 330
 
+layout (std140) uniform Matrices2{
 uniform mat4 PVM;
 uniform mat4 VM;
 uniform mat4 V;
 uniform mat3 mat_normal;
+};
+
+layout (std140) uniform Lights{
 uniform vec4 light_pos;
+};
 
 in vec4 positionV;
 in vec2 texCoord0;
