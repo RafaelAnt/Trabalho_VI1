@@ -24,10 +24,6 @@
 				vs = "shaders/SkyFromSpace.vert"
 				ps = "shaders/SkyFromSpace.frag" />
 				
-		<!--shader name="AntiAliasing"
-				vs = "shaders/anti-aliasing.vert"
-				ps = "shaders/anti-aliasing.frag" /-->
-				
 		<shader name="mundo"
 				vs = "shaders/mundo.vert"
 				ps = "shaders/mundo.frag" />
@@ -203,47 +199,17 @@
 		<material name="SkyFromSpace">
 			<shader name="SkyFromSpace">
 				<values>
-
-				</values>
-			</shader>
-		</material>
-
-		<!--material name="AntiAliasing">
-			<shader name="AntiAliasing">
-				<values>
 					<valueof uniform="PVM" 
 							 type="RENDERER"
 							 context="CURRENT" 
 							 component="PROJECTION_VIEW_MODEL" />
-							 
-					<valueof uniform="width" 
-							 type="COLOR"
-							 context="CURRENT" 
-							 component="width" />
-					
-					<valueof uniform="div" 
-							 type="COLOR"
-							 context="CURRENT" 
-							 component="div" />
-							 
-					<valueof uniform="gap" 
-							 type="COLOR"
-							 context="CURRENT" 
-							 component="gap" />
-							 
-					<valueof uniform="cor1" 
-							 type="COLOR"
-							 context="CURRENT" 
-							 component="cor1" />
-							 
-					<valueof uniform="cor2" 
-							 type="COLOR"
-							 context="CURRENT" 
-							 component="cor2" />
-
+					<valueof uniform="v3CameraPos"
+							type="CAMERA"
+							context="CURRENT"	
+							component="POSITION" />
 				</values>
 			</shader>
-		</material-->
+		</material>
 		
 		
 		<material name="mundo">
