@@ -9,14 +9,15 @@
 				<file name="../../Models/sphere1.obj"/>
 			</scene>
 			<scene name="Atmosphere" param="UNITIZE">
-				<SCALE x=5.125 y=5.125 z=5.125/>
+				<!--SCALE x=12 y=12 z=12/-->
+				<SCALE x="5.125" y="5.125" z="5.125"/>
 				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
 		
 		<viewports>
 			<viewport name="MainViewport">
-				<CLEAR_COLOR r="0.0" g="0.0" b="0.0" />
+				<CLEAR_COLOR r="0.1" g="0.1" b="0.1" />
 			</viewport>
 		</viewports>
 		
@@ -25,9 +26,9 @@
 				<viewport name="MainViewport" />
 				<TYPE value="PERSPECTIVE"/>
 				<FOV value=60/>
-				<NEAR value= 0.3/>
+				<NEAR value= 0.003/>
 				<FAR value= 1000/>
-				<POSITION x=0 y=0 z=-25 />
+				<POSITION x="10" y="0" z="-5" />
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>

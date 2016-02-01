@@ -42,7 +42,8 @@
 							
 					<valueof uniform="m_viewModel"
 							 block="Matrices"					
-							 type="RENDERER" context="CURRENT" 
+							 type="RENDERER"
+							 context="CURRENT" 
 							 component="VIEW_MODEL" />
 							 
 					<valueof uniform="c_pos"

@@ -1,28 +1,28 @@
 #version 330
 
 
-in vec4 position;	// local space
-in vec2 texCoord0;
+in vec4 position;	// local space 
+//in vec2 texCoord0; //RAFA
 
 
 //uniform vec3 v3LightPos;		// The direction vector to the light source = uniform	vec4 l_dir;??
-layout (std140) uniform Lights{
+layout (std140) uniform Lights{ //RAFA
 	vec4 light_dir;	   // global space
 };
 
-layout (std140) uniform Camera{
+layout (std140) uniform Camera{ //RAFA
 	vec4 c_pos;    //camera position
 };
 	
 
-layout (std140) uniform Matrices{
+layout (std140) uniform Matrices{ //RAFA
 	mat4 m_viewModel;
 	mat4 m_pvm;
-};
+}; //RAFA
 
 out Data{
-		vec4 pos /*: SV_POSITION*/;
-		vec2 uv /*: TEXCOORD0*/;
+		//vec4 pos /*: SV_POSITION*/; //RAFA
+		//vec2 uv /*: TEXCOORD0*/; //RAFA
 		vec3 t0 /*: TEXCOORD1*/;
 		vec3 c0 /*: COLOR0*/;
 		vec3 c1 /*: COLOR1*/;
@@ -54,7 +54,8 @@ void main () {
 	vec3 v3Pos = ( m_viewModel * position).xyz - v3Translate;
 	vec3 v3Ray = v3Pos - v3CameraPos;
 	float fFar = length(v3Ray);
-	v3Ray /= fFar;
+	//v3Ray /= fFar;
+	v3Ray = normalize (v3Ray); //RAFA
 	
 	// Calculate the closest intersection of the ray with the outer atmosphere (which is the near point of the ray passing through the atmosphere)
 	float B = 2.0 * dot(v3CameraPos, v3Ray);
@@ -97,8 +98,9 @@ void main () {
 		v3SamplePoint += v3SampleRay;
 	}
 
-	DataOut.pos = m_pvm * position;
-	DataOut.uv = texCoord0;
+	//DataOut.pos = m_pvm * position; //RAFA
+	//DataOut.uv = texCoord0; //RAFA
+	gl_Position = m_pvm * position; //RAFA
 	
 	// Finally, scale the Mie and Rayleigh colors and set up the varying variables for the pixel shader
 	DataOut.c0 = v3FrontColor * (v3InvWavelength * fKrESun);

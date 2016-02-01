@@ -1,13 +1,12 @@
 #version 330
 
-layout (std140) uniform Lights{
+layout (std140) uniform Lights{//RAFA
 	vec4 light_dir;	   // global space
 };
 
-in Data
-	{
-		vec4  pos /*: SV_POSITION*/;
-		vec2  uv /*: TEXCOORD0*/;
+in Data{
+		//vec4  pos /*: SV_POSITION*/; //RAFA
+		//vec2  uv /*: TEXCOORD0*/; //RAFA
 		vec3 t0 /*: TEXCOORD1*/;
 		vec3 c0 /*: COLOR0*/;
 		vec3 c1 /*: COLOR1*/;
@@ -28,7 +27,7 @@ void main() {
 	
 	col = 1.0 - exp(col * -fHdrExposure);
 	
-	//colorOut= vec4(col,col.b);
-	colorOut=vec4(1,1,0,0); //DEGUG
+	colorOut= vec4(col,col.b);
+	//colorOut = vec4(1,0,0,1); //DEGUG //RAFA
 
 }
