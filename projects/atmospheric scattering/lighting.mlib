@@ -2,7 +2,7 @@
 <materialLib name="Lighting">
 
 	<textures>
-		<texture 	name="mundo_tex"
+		<texture 	name="texCoord0"
 					filename="../../Models/Textures/BlueMarbleCloudy.png"
 					mipmap=true	/>		
 	</textures>
@@ -31,6 +31,10 @@
 		<shader name="mundo"
 				vs = "shaders/mundo.vert"
 				ps = "shaders/mundo.frag" />
+				
+		<shader name="SkyFromSpace2"
+				vs = "shaders/SkyFromSpace2.vert"
+				ps = "shaders/SkyFromSpace2.frag" />
 
 	</shaders>
 	
@@ -42,6 +46,36 @@
 	</states>
 	
 	<materials>
+	<material name="SkyFromSpace2">
+			<shader name="SkyFromSpace2">
+				<values>
+					<valueof uniform="m_pvm" 
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							
+					<valueof uniform="m_viewModel" 
+							 type="RENDERER" context="CURRENT" 
+							 component="VIEW_MODEL" />
+							 
+					<valueof uniform="c_pos"
+							 type="CAMERA"
+							 context="CURRENT"
+							 component="POSITION" />
+							 
+					<valueof uniform="l_dir" 
+							 type="LIGHT"
+							 context="Sun"
+							 component="DIRECTION" />
+						
+					<valueof uniform="texCoord0" 
+							 type="MATERIAL_TEXTURE"
+							 context="CURRENT" 
+							 component="UNIT" id=0 />
+				</values>
+			</shader>
+		</material>
+		
 		<material name="diffPerVertex">
 			<shader name="diffPerVertex">
 				<values>
@@ -240,7 +274,7 @@
 							 context="Sun"
 							 component="POSITION" />
 							 
-					<valueof uniform="mundo_tex" 
+					<valueof uniform="texCoord0" 
 							 type="MATERIAL_TEXTURE"
 							 context="CURRENT" 
 							 component="UNIT" id=0 />
@@ -250,7 +284,7 @@
 			</shader>
 			
 			<textures>
-				<texture UNIT="0" name="mundo_tex"/>
+				<texture UNIT="0" name="texCoord0"/>
 			</textures>
 		</material>
 					

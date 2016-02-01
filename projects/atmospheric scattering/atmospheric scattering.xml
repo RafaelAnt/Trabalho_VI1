@@ -4,19 +4,19 @@
 		
 		<scenes>
 			<scene name="Earth" param="UNITIZE">
-				<SCALE x=1 y=1 z=1/>
+				<SCALE x=5 y=5 z=5/>
 				<ROTATE x="1" y="0" z="0" w="-90"/>
 				<file name="../../Models/sphere1.obj"/>
 			</scene>
 			<scene name="Atmosphere" param="UNITIZE">
-				<SCALE x=1.25 y=1.25 z=1.25/>
+				<SCALE x=5.125 y=5.125 z=5.125/>
 				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
 		
 		<viewports>
 			<viewport name="MainViewport">
-				<CLEAR_COLOR r="1.0" g="1.0" b="1.0" />
+				<CLEAR_COLOR r="0.0" g="0.0" b="0.0" />
 			</viewport>
 		</viewports>
 		
@@ -26,8 +26,8 @@
 				<TYPE value="PERSPECTIVE"/>
 				<FOV value=60/>
 				<NEAR value= 0.3/>
-				<FAR value= 110000/>
-				<POSITION x=2 y=0 z=0 />
+				<FAR value= 1000/>
+				<POSITION x=0 y=0 z=-25 />
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
@@ -35,7 +35,7 @@
 		<lights>
 			<light name="Sun">
 				<POSITION x=0 y=0 z=0 />
-				<DIRECTION x=0 y=-1 z=0 />
+				<DIRECTION x=-1 y=0 z=0 />
 			</light>
 		</lights>
 		
@@ -59,12 +59,12 @@
 					<map toMaterial="sphere1">
 						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
 						<textures>
-							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
+							<texture name="texCoord0" 	fromLibrary="Lighting" toUnit=0/>
 						</textures>
 					</map>
 					<map toMaterial="sphere2">
 						<state name="cull_front" fromLibrary="Lighting" />
- 						<shader fromMaterial ="diffAmbSpecPerPixel2" fromLibrary="Lighting" />
+ 						<shader fromMaterial ="SkyFromSpace2" fromLibrary="Lighting" />
 					</map>
 				</injectionMaps>
 			</pass>
