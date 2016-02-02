@@ -66,7 +66,7 @@ void main (){
 	fFar -= fNear;
 	float fDepth = exp((fInnerRadius - fOuterRadius) / fScaleDepth);
 	float fCameraAngle = dot(-v3Ray, v3Pos) / length(v3Pos);
-	float fLightAngle = dot(vec3(1,0,0) , v3Pos) / length(v3Pos);
+	float fLightAngle = dot(vec3(light_dir) , v3Pos) / length(v3Pos);
 	
 	float x = 1.0 - fCameraAngle;
 	float fCameraScale = fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
