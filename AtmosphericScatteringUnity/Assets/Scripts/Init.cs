@@ -48,6 +48,7 @@ public class Init : MonoBehaviour
 		mat.SetVector("v3LightPos", m_sun.transform.forward*-1.0f);
 		mat.SetVector("v3InvWavelength", invWaveLength4);
 		mat.SetFloat("fOuterRadius", m_outerRadius);
+		Debug.Log(m_outerRadius);
 		mat.SetFloat("fOuterRadius2", m_outerRadius*m_outerRadius);
 		mat.SetFloat("fInnerRadius", m_innerRadius);
 		mat.SetFloat("fInnerRadius2", m_innerRadius*m_innerRadius);

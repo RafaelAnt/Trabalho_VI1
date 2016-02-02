@@ -4,13 +4,13 @@
 		
 		<scenes>
 			<scene name="Earth" param="UNITIZE">
-				<SCALE x=5 y=5 z=5/>
+				<SCALE x=10 y=10 z=10/>
 				<ROTATE x="1" y="0" z="0" w="-90"/>
 				<file name="../../Models/sphere1.obj"/>
 			</scene>
 			<scene name="Atmosphere" param="UNITIZE">
 				<!--SCALE x=12 y=12 z=12/-->
-				<SCALE x="5.125" y="5.125" z="5.125"/>
+				<SCALE x=10.25 y=10.25 z=10.25/>
 				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
@@ -38,7 +38,7 @@
 				<POSITION x=0 y=0 z=-50 />
 				<DIRECTION x=-1 y=0 z=0 />
 			</light>
-		</lights>
+		</lights> 
 		
 		<materialLibs>
 			<materialLib filename="lighting.mlib" />
@@ -61,11 +61,10 @@
 						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
 						<textures>
 							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
-							<texture name="noite" 	fromLibrary="Lighting" toUnit=1/>
 						</textures>
 					</map>
 					<map toMaterial="sphere2">
-						<state name="cull_front" fromLibrary="Lighting" />
+						<<state name="cull_front" fromLibrary="Lighting" />
  						<shader fromMaterial ="SkyFromSpace" fromLibrary="Lighting" />
 					</map>
 				</injectionMaps>

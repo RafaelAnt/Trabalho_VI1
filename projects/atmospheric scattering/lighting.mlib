@@ -18,6 +18,10 @@
 		<shader name="SkyFromSpace"
 				vs = "shaders/SkyFromSpace.vert"
 				ps = "shaders/SkyFromSpace.frag" />
+				
+		<shader name="GroundFromSpace"
+				vs = "shaders/GroundFromSpace.vert"
+				ps = "shaders/GroundFromSpace.frag" />
 
 	</shaders>
 	
@@ -25,6 +29,9 @@
 	<states>
 		<state name="cull_front">
 			<CULL_TYPE value="FRONT" />
+		</state>
+		<state name="cull_front_and_back">
+			<CULL_TYPE value="FRONT_AND_BACK" />
 		</state>
 	</states>
 	
@@ -55,6 +62,43 @@
 							 type="LIGHT"
 							 context="Sun"
 							 component="DIRECTION" />
+						
+				</values>
+			</shader>
+		</material>
+		
+		<material name="GroundFromSpace">
+			<shader name="GroundFromSpace">
+				<values>
+					<valueof uniform="m_pvm" 
+							 block="Matrices"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							
+					<valueof uniform="m_viewModel"
+							 block="Matrices"					
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="VIEW_MODEL" />
+							 
+					<valueof uniform="c_pos"
+							 block="Camera"
+							 type="CAMERA"
+							 context="CURRENT"
+							 component="POSITION" />
+							 
+					<valueof uniform="light_dir" 
+							 block="Lights"
+							 type="LIGHT"
+							 context="Sun"
+							 component="DIRECTION" />		
+					
+					<valueof uniform="mundo_tex" 
+							 type="MATERIAL_TEXTURE"
+							 context="CURRENT" 
+							 component="UNIT"
+							 id=0 />
 						
 				</values>
 			</shader>

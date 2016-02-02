@@ -18,7 +18,7 @@ layout (std140) uniform Camera{ //RAFA
 };
 
 out Data{
-	vec3 uv /*: TEXCOORD0*/;
+	vec2 uv /*: TEXCOORD0*/;
 	vec3 c0 /*: COLOR0*/;
 	vec3 c1 /*: COLOR1*/;
 } DataOut;
@@ -26,22 +26,24 @@ out Data{
 void main (){
 	
 	// INIT
-	float fOuterRadius = 5.125;		// The outer (atmosphere) radius //= raio da esfera 2 do projeto
-	float fOuterRadius2 = 26.265625;	// fOuterRadius^2
-	float fInnerRadius = 5;		// The inner (planetary) radius //= raio da esfera 1 do projeto
-	float fInnerRadius2 = 25;	// fInnerRadius^2
+	float fOuterRadius = 10.25;		// The outer (atmosphere) radius //= raio da esfera 2 do projeto
+	float fOuterRadius2 = 105.0625;	// fOuterRadius^2
+	float fInnerRadius = 10;		// The inner (planetary) radius //= raio da esfera 1 do projeto
+	float fInnerRadius2 = 100;	// fInnerRadius^2
 	
 	float fScaleDepth = 0.25;		// The scale depth (i.e. the altitude at which the atmosphere's average density is found)
-	float fScale = 8;			// 1 / (fOuterRadius - fInnerRadius)
-	float fScaleOverScaleDepth = 32;	// fScale / fScaleDepth
+	float fScale =4;			// 1 / (fOuterRadius - fInnerRadius)
+	float fScaleOverScaleDepth = 16;	// fScale / fScaleDepth
 	
 	vec3 v3InvWavelength = vec3( 5.602044746 , 9.473284438 , 19.64380261); // 1 / pow(wavelength, 4) for the red, green, and blue channels //calculado a mao
+	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=15
+	float fKmESun = 0.015;			// Km=0.001 * ESun=15
 	float fKr4PI = 0.031415927;			// Kr=0.0025 * 4 * PI //aproximado
 	float fKm4PI = 0.012566371;			// Km=0.001 * 4 * PI
 	
 	
 	vec3 v3Translate = vec3 (0 , 0 , 0); // The objects world pos
-	vec3 v3CameraPos = c_pos - v3Translate;	// The camera's current position
+	vec3 v3CameraPos = vec3(c_pos) - v3Translate;	// The camera's current position
 	float fCameraHeight = length(v3CameraPos);					// The camera's current height
 	float fCameraHeight2 = fCameraHeight*fCameraHeight;			// fCameraHeight^2
 	
@@ -49,7 +51,7 @@ void main (){
 	vec3 v3Pos = ( m_viewModel * position).xyz - v3Translate;
 	vec3 v3Ray = v3Pos - v3CameraPos;
 	float fFar = length(v3Ray);
-	v3Ray = normalize (v3Ray);
+	v3Ray =normalize(v3Ray);
 	
 	// Calculate the closest intersection of the ray with the outer atmosphere (which is the near point of the ray passing through the atmosphere)
 	float B = 2.0 * dot(v3CameraPos, v3Ray);
@@ -67,8 +69,8 @@ void main (){
 	float x = 1.0 - fCameraAngle;
 	float fCameraScale = fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
 	
-	float x = 1.0 - fLightAngle;
-	float fLightScale = fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
+	float x2 = 1.0 - fLightAngle;
+	float fLightScale = fScaleDepth * exp(-0.00287 + x2*(0.459 + x2*(3.83 + x2*(-6.80 + x2*5.25))));
 	
 	float fCameraOffset = fDepth*fCameraScale;
 	float fTemp = (fLightScale + fCameraScale);

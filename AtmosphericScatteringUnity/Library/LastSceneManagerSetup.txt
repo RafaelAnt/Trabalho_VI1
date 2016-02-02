@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/FromAtmoshpere.unity
+- path: Assets/Scenes/FromSpace.unity
   isLoaded: 1
   isActive: 1

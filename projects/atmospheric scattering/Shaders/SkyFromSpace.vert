@@ -31,17 +31,17 @@ out Data{
 void main () {
 	vec3 v3Translate = vec3(0 , 0 , 0);		// The objects world pos //= translação dada as esferas no objeto;
 	vec3 v3InvWavelength = vec3( 5.602044746 , 9.473284438 , 19.64380261); // 1 / pow(wavelength, 4) for the red, green, and blue channels //calculado a mao
-	float fOuterRadius = 5.125;		// The outer (atmosphere) radius //= raio da esfera 2 do projeto
-	float fOuterRadius2 = 26.265625;	// fOuterRadius^2
-	float fInnerRadius = 5;		// The inner (planetary) radius //= raio da esfera 1 do projeto
-//uniform float fInnerRadius2 = 25;	// fInnerRadius^2
-	float fKrESun = 7.5;			// Kr=0.0025 * ESun=15
-	float fKmESun = 0.15;			// Km=0.001 * ESun=15
+	float fOuterRadius = 10.25;		// The outer (atmosphere) radius //= raio da esfera 2 do projeto
+	float fOuterRadius2 = 105.0625;	// fOuterRadius^2
+	float fInnerRadius = 10;		// The inner (planetary) radius //= raio da esfera 1 do projeto
+	float fInnerRadius2 = 100;	// fInnerRadius^2
+	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=15
+	float fKmESun = 0.015;			// Km=0.001 * ESun=15
 	float fKr4PI = 0.031415927;			// Kr=0.0025 * 4 * PI //aproximado
 	float fKm4PI = 0.012566371;			// Km=0.001 * 4 * PI
-	float fScale = 8;			// 1 / (fOuterRadius - fInnerRadius)
 	float fScaleDepth = 0.25;		// The scale depth (i.e. the altitude at which the atmosphere's average density is found)
-	float fScaleOverScaleDepth = 32;	// fScale / fScaleDepth
+	float fScale =4;			// 1 / (fOuterRadius - fInnerRadius)
+	float fScaleOverScaleDepth = 16;	// fScale / fScaleDepth
 //uniform float fHdrExposure =0.6;		// HDR exposure
 //uniform float g = -0.99;				// The Mie phase asymmetry factor
 //uniform float g2 = 0.9801;				// The Mie phase asymmetry factor squared
