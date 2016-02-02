@@ -29,10 +29,14 @@
 				<NEAR value= 0.003/>
 				<FAR value= 1000/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<POSITION x=0 y=0 z=-25 />
 =======
 				<POSITION x="10" y="0" z="-5" />
 >>>>>>> parent of f6f35b4... Bug Fix
+=======
+				<POSITION x=0 y=0 z=-25 />
+>>>>>>> 05078a7e1959fdf9e82b7767c849c8d32567befa
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
