@@ -2,7 +2,7 @@
 
 
 in vec4 position;
-//in vec2 texCoord0; //RAFA
+in vec2 texCoord0; //RAFA
 
 layout (std140) uniform Lights{ //RAFA
 	vec4 light_dir;	   // global space
@@ -18,9 +18,9 @@ layout (std140) uniform Camera{ //RAFA
 };
 
 out Data{
-		//vec3 uv /*: TEXCOORD0*/;
-		vec3 c0 /*: COLOR0*/;
-		vec3 c1 /*: COLOR1*/;
+	vec3 uv /*: TEXCOORD0*/;
+	vec3 c0 /*: COLOR0*/;
+	vec3 c1 /*: COLOR1*/;
 } DataOut;
 
 void main (){
@@ -96,7 +96,7 @@ void main (){
 	
 	//OUT.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 	gl_Position = m_pvm * position; //RAFA
-	//DataOut.uv = v.texcoord.xy;
+	DataOut.uv = texCoord0;
 	DataOut.c0 = v3FrontColor * (v3InvWavelength * fKrESun + fKmESun);
 	DataOut.c1 = v3Attenuate;
 				
