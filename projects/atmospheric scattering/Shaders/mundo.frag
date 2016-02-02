@@ -1,7 +1,7 @@
 #version 330 
 
 //layout (std140) uniform Textures{
-uniform sampler2D mundo_tex;
+uniform sampler2D mundo_tex,noite;
 //};
 
 in Data {
@@ -22,5 +22,21 @@ void main(){
 	
 	float intensity = max(dot( l, n ), 0.0 );
 
-	colorOut= texture(mundo_tex,DataIn.texCoord) * intensity ;
+	if (intensity > 0.5){
+		colorOut= texture(mundo_tex,DataIn.texCoord) * intensity ;
+	}else{
+		if( intensity < 0){
+			colorOut= texture(noite,DataIn.texCoord) ;
+		}else{
+			vec3 h = normalize( e + l);
+		
+			vec4 cd = texture (mundo_tex, DataIn.texCoord) * intensity;
+			vec4 cn = texture (noite, DataIn.texCoord);
+			
+			float f=smoothstep(0.0 , 0.5 , intensity);
+			colorOut=mix(cn,cd,f);
+		}
+		
+	}
+	
 }

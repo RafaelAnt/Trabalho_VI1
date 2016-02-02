@@ -61,11 +61,12 @@
 						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
 						<textures>
 							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
+							<texture name="noite" 	fromLibrary="Lighting" toUnit=1/>
 						</textures>
 					</map>
 					<map toMaterial="sphere2">
 						<state name="cull_front" fromLibrary="Lighting" />
- 						<shader fromMaterial ="SkyFromSpace2" fromLibrary="Lighting" />
+ 						<shader fromMaterial ="SkyFromSpace" fromLibrary="Lighting" />
 					</map>
 				</injectionMaps>
 			</pass>

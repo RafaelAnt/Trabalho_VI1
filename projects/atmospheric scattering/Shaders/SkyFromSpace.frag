@@ -1,36 +1,33 @@
-#version 330 
+#version 330
 
-in vec4 c0;
-in vec4 c1;
-in vec3 v3Direction;
+layout (std140) uniform Lights{//RAFA
+	vec4 light_dir;	   // global space
+};
 
-uniform vec3 v3LightDirection;
-uniform float g;
-uniform float g2;
-
+in Data{
+		//vec4  pos /*: SV_POSITION*/; //RAFA
+		//vec2  uv /*: TEXCOORD0*/; //RAFA
+		vec3 t0 /*: TEXCOORD1*/;
+		vec3 c0 /*: COLOR0*/;
+		vec3 c1 /*: COLOR1*/;
+	}DataIn;
+	
 out vec4 colorOut;
 
-// Mie phase function
-float getMiePhase(float fCos, float fCos2, float g, float g2)
-{
-   return 1.5 * ((1.0 - g2) / (2.0 + g2)) * (1.0 + fCos2) / pow(1.0 + g2 - 2.0*g*fCos, 1.5);   
+void main() {
+	float fHdrExposure =0.6;		// HDR exposure
+	float g = -0.99;				// The Mie phase asymmetry factor
+	float g2 = 0.9801;				// The Mie phase asymmetry factor squared
+	float fCos = dot(vec3(light_dir), DataIn.t0) / length(DataIn.t0);
+	float fCos2 = fCos*fCos;
+	float getRayleighPhase = 0.75 + 0.75*fCos2;
+	float getMiePhase = 1.5 * ((1.0 - g2) / (2.0 + g2)) * (1.0 + fCos2) / pow(1.0 + g2 - 2.0*g*fCos, 1.5);
+	
+	vec3 col = getRayleighPhase * DataIn.c0 + getMiePhase * DataIn.c1;
+	
+	col = 1.0 - exp(col * -fHdrExposure);
+	
+	colorOut= vec4(col,col.b);
+	//colorOut = vec4(1,0,0,1); //DEGUG //RAFA
+
 }
-
-// Rayleigh phase function
-float getRayleighPhase(float fCos2)
-{
-   //return 0.75 + 0.75 * fCos2;
-   return 0.75 * (2.0 + 0.5 * fCos2);
-   
-}
-
-void main(){
-  float fCos = dot(v3LightDirection, v3Direction) / length(v3Direction);
-  float fCos2 = fCos * fCos;
-  vec4 color = getRayleighPhase(fCos2) * c0 + getMiePhase(fCos, fCos2, g, g2) * c1;
-  color.a = color.b;
-  //colorOut=vec4(0.0,1.0,0.0,1);
-  colorOut = color;
-}
-
-
