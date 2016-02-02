@@ -45,11 +45,11 @@
 							 context="CURRENT" 
 							 component="PROJECTION_VIEW_MODEL" />
 							
-					<valueof uniform="m_viewModel"
-							 block="Matrices"					
+					<valueof uniform="m_m" 
+							 block="Matrices"
 							 type="RENDERER"
 							 context="CURRENT" 
-							 component="VIEW_MODEL" />
+							 component="MODEL" />
 							 
 					<valueof uniform="c_pos"
 							 block="Camera"

@@ -27,7 +27,7 @@ void main() {
 	
 	col = 1.0 - exp(col * -fHdrExposure);
 	
-	colorOut= vec4(col,col.b);
+	colorOut= vec4(col,1);
 	//colorOut = vec4(1,0,0,1); //DEGUG //RAFA
 
 }

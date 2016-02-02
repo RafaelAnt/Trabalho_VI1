@@ -11,10 +11,10 @@ in Data{
 out vec4 colorOut;
 
 void main(){
-	float fHdrExposure =0.6;		// HDR exposure
+	float fHdrExposure =0.4;		// HDR exposure
 	
 	vec3 texel = vec3(texture(mundo_tex, DataIn.uv));
-	vec3 col = DataIn.c0 + 0.5 * DataIn.c1;
+	vec3 col = DataIn.c0 + 0.25 * DataIn.c1;
 	
 	//Adjust color from HDR
 	col = 1.0 - exp(col * -fHdrExposure);

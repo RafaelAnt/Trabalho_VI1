@@ -15,8 +15,8 @@ layout (std140) uniform Camera{ //RAFA
 	
 
 layout (std140) uniform Matrices{ //RAFA
-	mat4 m_viewModel;
 	mat4 m_pvm;
+	mat4 m_m;
 }; //RAFA
 
 out Data{
@@ -31,8 +31,8 @@ out Data{
 void main () {
 	vec3 v3Translate = vec3(0 , 0 , 0);		// The objects world pos //= translação dada as esferas no objeto;
 	vec3 v3InvWavelength = vec3( 5.602044746 , 9.473284438 , 19.64380261); // 1 / pow(wavelength, 4) for the red, green, and blue channels //calculado a mao
-	float fOuterRadius = 10.25;		// The outer (atmosphere) radius //= raio da esfera 2 do projeto
-	float fOuterRadius2 = 105.0625;	// fOuterRadius^2
+	float fOuterRadius = 10.125;		// The outer (atmosphere) radius //= raio da esfera 2 do projeto
+	float fOuterRadius2 = 102.515625;	// fOuterRadius^2
 	float fInnerRadius = 10;		// The inner (planetary) radius //= raio da esfera 1 do projeto
 	float fInnerRadius2 = 100;	// fInnerRadius^2
 	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=15
@@ -41,7 +41,7 @@ void main () {
 	float fKmESun = 0.15;			// Km=0.001 * ESun=15*/
 	float fKr4PI = 0.031415927;			// Kr=0.0025 * 4 * PI //aproximado
 	float fKm4PI = 0.012566371;			// Km=0.001 * 4 * PI
-	float fScaleDepth = 0.25;		// The scale depth (i.e. the altitude at which the atmosphere's average density is found)
+	float fScaleDepth = 0.125;		// The scale depth (i.e. the altitude at which the atmosphere's average density is found)
 	float fScale =4;			// 1 / (fOuterRadius - fInnerRadius)
 	float fScaleOverScaleDepth = 16;	// fScale / fScaleDepth
 //uniform float fHdrExposure =0.6;		// HDR exposure
@@ -52,7 +52,7 @@ void main () {
 	float fCameraHeight2 = fCameraHeight*fCameraHeight;			// fCameraHeight^2
 
 	// Get the ray from the camera to the vertex and its length (which is the far point of the ray passing through the atmosphere)
-	vec3 v3Pos = ( m_viewModel * position).xyz - v3Translate;
+	vec3 v3Pos = ( m_m * position).xyz - v3Translate;
 	vec3 v3Ray = v3Pos - v3CameraPos;
 	float fFar = length(v3Ray);
 	v3Ray = normalize (v3Ray); //RAFA
@@ -69,7 +69,7 @@ void main () {
 	float fStartAngle = dot(v3Ray, v3Start) / fOuterRadius;
 	float fStartDepth = exp(-1.0/fScaleDepth);
 	float x = 1.0 - fStartAngle;
-	float scaleFStartAngle = 0.25 * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
+	float scaleFStartAngle = fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
 	float fStartOffset = fStartDepth*scaleFStartAngle;
 	
 	const float fSamples = 2.0;
@@ -89,9 +89,9 @@ void main () {
 		float fLightAngle = dot(vec3(light_dir), v3SamplePoint) / fHeight;
 		float fCameraAngle = dot(v3Ray, v3SamplePoint) / fHeight;
 		float x2 = 1.0 - fLightAngle;
-		float scaleFLightAngle = 0.25 * exp(-0.00287 + x2*(0.459 + x2*(3.83 + x2*(-6.80 + x2*5.25))));
+		float scaleFLightAngle = fScaleDepth * exp(-0.00287 + x2*(0.459 + x2*(3.83 + x2*(-6.80 + x2*5.25))));
 		float x3 = 1.0 - fCameraAngle;
-		float scaleFCameraAngle = 0.25 * exp(-0.00287 + x3*(0.459 + x3*(3.83 + x3*(-6.80 + x3*5.25))));
+		float scaleFCameraAngle = fScaleDepth * exp(-0.00287 + x3*(0.459 + x3*(3.83 + x3*(-6.80 + x3*5.25))));
 		float fScatter = (fStartOffset + fDepth*(scaleFLightAngle - scaleFCameraAngle));
 		vec3 v3Attenuate = exp(-fScatter * (v3InvWavelength * fKr4PI + fKm4PI));
 		v3FrontColor += v3Attenuate * (fDepth * fScaledLength);
