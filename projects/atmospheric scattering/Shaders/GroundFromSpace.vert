@@ -38,6 +38,8 @@ void main (){
 	vec3 v3InvWavelength = vec3( 5.602044746 , 9.473284438 , 19.64380261); // 1 / pow(wavelength, 4) for the red, green, and blue channels //calculado a mao
 	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=15
 	float fKmESun = 0.015;			// Km=0.001 * ESun=15
+	/*float fKrESun = 7.5;			// Kr=0.0025 * ESun=15
+	float fKmESun = 0.15;			// Km=0.001 * ESun=15*/
 	float fKr4PI = 0.031415927;			// Kr=0.0025 * 4 * PI //aproximado
 	float fKm4PI = 0.012566371;			// Km=0.001 * 4 * PI
 	
@@ -64,7 +66,7 @@ void main (){
 	fFar -= fNear;
 	float fDepth = exp((fInnerRadius - fOuterRadius) / fScaleDepth);
 	float fCameraAngle = dot(-v3Ray, v3Pos) / length(v3Pos);
-	float fLightAngle = dot(vec3(light_dir) , v3Pos) / length(v3Pos);
+	float fLightAngle = dot(vec3(1,0,0) , v3Pos) / length(v3Pos);
 	
 	float x = 1.0 - fCameraAngle;
 	float fCameraScale = fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));

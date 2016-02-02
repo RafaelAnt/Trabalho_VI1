@@ -37,6 +37,8 @@ void main () {
 	float fInnerRadius2 = 100;	// fInnerRadius^2
 	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=15
 	float fKmESun = 0.015;			// Km=0.001 * ESun=15
+	/*float fKrESun = 7.5;			// Kr=0.0025 * ESun=15
+	float fKmESun = 0.15;			// Km=0.001 * ESun=15*/
 	float fKr4PI = 0.031415927;			// Kr=0.0025 * 4 * PI //aproximado
 	float fKm4PI = 0.012566371;			// Km=0.001 * 4 * PI
 	float fScaleDepth = 0.25;		// The scale depth (i.e. the altitude at which the atmosphere's average density is found)

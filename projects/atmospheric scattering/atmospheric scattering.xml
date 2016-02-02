@@ -28,15 +28,15 @@
 				<FOV value=60/>
 				<NEAR value= 0.003/>
 				<FAR value= 1000/>
-				<POSITION x="10" y="0" z="-5" />
+				<POSITION x=0 y=0 z=-25 />
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
 		
 		<lights>
 			<light name="Sun">
-				<POSITION x=0 y=0 z=-50 />
-				<DIRECTION x=-1 y=0 z=0 />
+				<POSITION x=0 y=0 z=50 />
+				<DIRECTION x=0 y=0 z=-1 />
 			</light>
 		</lights> 
 		
@@ -64,7 +64,7 @@
 						</textures>
 					</map>
 					<map toMaterial="sphere2">
-						<<state name="cull_front" fromLibrary="Lighting" />
+						<state name="cull_front" fromLibrary="Lighting" />
  						<shader fromMaterial ="SkyFromSpace" fromLibrary="Lighting" />
 					</map>
 				</injectionMaps>
