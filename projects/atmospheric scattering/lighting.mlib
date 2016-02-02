@@ -102,6 +102,10 @@
 						
 				</values>
 			</shader>
+			
+			<textures>
+				<texture UNIT="0" name="mundo_tex"/>
+			</textures>
 		</material>
 	
 		<material name="mundo">
