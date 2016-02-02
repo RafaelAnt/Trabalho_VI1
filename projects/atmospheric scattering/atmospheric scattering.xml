@@ -29,10 +29,10 @@
 				<NEAR value= 0.003/>
 				<FAR value= 1000/>
 <<<<<<< HEAD
-				<POSITION x="15" y="0" z="-10" />
-=======
 				<POSITION x=0 y=0 z=-25 />
->>>>>>> carlos
+=======
+				<POSITION x="10" y="0" z="-5" />
+>>>>>>> parent of f6f35b4... Bug Fix
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
@@ -62,14 +62,13 @@
 				</lights>
 				<injectionMaps>
 					<map toMaterial="sphere1">
-						<shader fromMaterial ="GroundFromSpace" fromLibrary="Lighting" />
+						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
 						<textures>
 							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
-							<!--texture name="noite" 	fromLibrary="Lighting" toUnit=1/-->
 						</textures>
 					</map>
 					<map toMaterial="sphere2">
-						<state name="cull_front" fromLibrary="Lighting" />
+						<<state name="cull_front" fromLibrary="Lighting" />
  						<shader fromMaterial ="SkyFromSpace" fromLibrary="Lighting" />
 					</map>
 				</injectionMaps>
