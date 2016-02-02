@@ -28,15 +28,19 @@
 				<FOV value=60/>
 				<NEAR value= 0.003/>
 				<FAR value= 1000/>
+<<<<<<< HEAD
 				<POSITION x="15" y="0" z="-10" />
+=======
+				<POSITION x=0 y=0 z=-25 />
+>>>>>>> carlos
 				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
 		
 		<lights>
 			<light name="Sun">
-				<POSITION x=0 y=0 z=-50 />
-				<DIRECTION x=-1 y=0 z=0 />
+				<POSITION x=0 y=0 z=50 />
+				<DIRECTION x=0 y=0 z=-1 />
 			</light>
 		</lights> 
 		
