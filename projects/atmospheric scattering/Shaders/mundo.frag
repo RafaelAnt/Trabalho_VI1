@@ -18,8 +18,6 @@ void main(){
 	vec3 l = normalize( DataIn.l_dir );
 	vec3 e = normalize( vec3(DataIn.eye) );
 	
-	vec4 spec = vec4 (0);
-	
 	float intensity = max(dot( l, n ), 0.0 );
 
 	if (intensity > 0.5){

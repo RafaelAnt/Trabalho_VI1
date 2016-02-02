@@ -33,6 +33,9 @@
 		<state name="cull_front_and_back">
 			<CULL_TYPE value="FRONT_AND_BACK" />
 		</state>
+		<state name="cull_back">
+			<CULL_TYPE value="BACK" />
+		</state>
 	</states>
 	
 	<materials>
@@ -99,9 +102,13 @@
 							 context="CURRENT" 
 							 component="UNIT"
 							 id=0 />
-						
+
 				</values>
 			</shader>
+			
+			<textures>
+				<texture UNIT="0" name="mundo_tex"/>
+			</textures>
 		</material>
 	
 		<material name="mundo">
