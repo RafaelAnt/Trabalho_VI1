@@ -17,7 +17,7 @@
 		
 		<viewports>
 			<viewport name="MainViewport">
-				<CLEAR_COLOR r="0.5" g="0.5" b="0.5" />
+				<CLEAR_COLOR r="0" g="0" b="0" />
 			</viewport>
 		</viewports>
 		
@@ -26,17 +26,17 @@
 				<viewport name="MainViewport" />
 				<TYPE value="PERSPECTIVE"/>
 				<FOV value=60/>
-				<NEAR value= 0.003/>
+				<NEAR value= 0.03/>
 				<FAR value= 1000/>
-				<POSITION x=-10 y=0 z=-15 />
-				<LOOK_AT_POINT x=-1 y=0 z=0 />
+				<POSITION x=0 y=0 z=20/>
+				<LOOK_AT_POINT x=0 y=0 z=0 />
 			</camera>
 		</cameras>
 		
 		<lights>
 			<light name="Sun">
-				<POSITION x=0 y=0 z=50 />
-				<DIRECTION x=0 y=0 z=0 />
+				<POSITION x=0 y=0 z=50/>
+				<DIRECTION x=0 y=0 z=1/>
 			</light>
 		</lights> 
 		
@@ -58,9 +58,10 @@
 				</lights>
 				<injectionMaps>
 					<map toMaterial="sphere1">
-						<shader fromMaterial ="GroundFromSpace" fromLibrary="Lighting" />
+						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
 						<textures>
 							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
+							<texture name="noite" 	fromLibrary="Lighting" toUnit=1/>
 						</textures>
 					</map>
 					<map toMaterial="sphere2">

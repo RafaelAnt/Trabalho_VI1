@@ -15,7 +15,7 @@ in Data{
 out vec4 colorOut;
 
 void main() {
-	float fHdrExposure =0.6;		// HDR exposure
+	float fHdrExposure =0.8;		// HDR exposure
 	float g = -0.99;				// The Mie phase asymmetry factor
 	float g2 = 0.9801;				// The Mie phase asymmetry factor squared
 	float fCos = dot(vec3(light_dir), DataIn.t0) / length(DataIn.t0);

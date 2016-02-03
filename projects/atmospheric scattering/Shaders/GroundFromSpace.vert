@@ -54,7 +54,8 @@ void main (){
 	vec3 v3Pos = ( m_m * position).xyz - v3Translate;
 	vec3 v3Ray = v3Pos - v3CameraPos;
 	float fFar = length(v3Ray);
-	v3Ray =normalize(v3Ray);
+	//v3Ray =normalize(v3Ray);
+	v3Ray /= fFar;
 	
 	// Calculate the closest intersection of the ray with the outer atmosphere (which is the near point of the ray passing through the atmosphere)
 	float B = 2.0 * dot(v3CameraPos, v3Ray);
