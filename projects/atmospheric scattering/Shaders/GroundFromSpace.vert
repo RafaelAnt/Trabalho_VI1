@@ -9,9 +9,10 @@ layout (std140) uniform Lights{ //RAFA
 };
 
 layout (std140) uniform Matrices{ //RAFA
-	mat4 m_viewModel;
 	mat4 m_pvm;
-};
+	mat4 m_m;
+}; //RAFA
+
 
 layout (std140) uniform Camera{ //RAFA
 	vec4 c_pos;    //camera position
@@ -36,8 +37,8 @@ void main (){
 	float fScaleOverScaleDepth = 16;	// fScale / fScaleDepth
 	
 	vec3 v3InvWavelength = vec3( 5.602044746 , 9.473284438 , 19.64380261); // 1 / pow(wavelength, 4) for the red, green, and blue channels //calculado a mao
-	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=15
-	float fKmESun = 0.015;			// Km=0.001 * ESun=15
+	float fKrESun = 0.0375;			// Kr=0.0025 * ESun=5
+	float fKmESun = 0.0015;			// Km=0.001 * ESun=15
 	/*float fKrESun = 7.5;			// Kr=0.0025 * ESun=15
 	float fKmESun = 0.15;			// Km=0.001 * ESun=15*/
 	float fKr4PI = 0.031415927;			// Kr=0.0025 * 4 * PI //aproximado
@@ -50,7 +51,7 @@ void main (){
 	float fCameraHeight2 = fCameraHeight*fCameraHeight;			// fCameraHeight^2
 	
 	// Get the ray from the camera to the vertex and its length (which is the far point of the ray passing through the atmosphere)
-	vec3 v3Pos = ( m_viewModel * position).xyz - v3Translate;
+	vec3 v3Pos = ( m_m * position).xyz - v3Translate;
 	vec3 v3Ray = v3Pos - v3CameraPos;
 	float fFar = length(v3Ray);
 	v3Ray =normalize(v3Ray);
@@ -66,7 +67,7 @@ void main (){
 	fFar -= fNear;
 	float fDepth = exp((fInnerRadius - fOuterRadius) / fScaleDepth);
 	float fCameraAngle = dot(-v3Ray, v3Pos) / length(v3Pos);
-	float fLightAngle = dot(vec3(1,0,0) , v3Pos) / length(v3Pos);
+	float fLightAngle = dot(vec3(light_dir) , v3Pos) / length(v3Pos);
 	
 	float x = 1.0 - fCameraAngle;
 	float fCameraScale = fScaleDepth * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
@@ -86,15 +87,15 @@ void main (){
 	vec3 v3SamplePoint = v3Start + v3SampleRay * 0.5;
 	
 	// Now loop through the sample rays
-	vec3 v3FrontColor = vec3 (0.0 , 0.0 , 0.0);
-	vec3 v3Attenuate = vec3 (0.0 , 0.0 , 0.0);
+	vec3 v3FrontColor = vec3 (1.0 , 1.0 , 1.0);
+	vec3 v3Attenuate  = vec3 (0.0 , 0.0 , 0.0);
 	for(int i=0; i<int(fSamples); i++)
 	{
 		float fHeight = length(v3SamplePoint);
 		float fDepth = exp(fScaleOverScaleDepth * (fInnerRadius - fHeight));
 		float fScatter = fDepth*fTemp - fCameraOffset;
 		v3Attenuate = exp(-fScatter * (v3InvWavelength * fKr4PI + fKm4PI));
-		v3FrontColor += v3Attenuate * (fDepth * fScaledLength);
+		v3FrontColor -= v3Attenuate * (fDepth * fScaledLength);
 		v3SamplePoint += v3SampleRay;
 	}
 	

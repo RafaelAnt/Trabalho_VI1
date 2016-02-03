@@ -10,14 +10,14 @@
 			</scene>
 			<scene name="Atmosphere" param="UNITIZE">
 				<!--SCALE x=12 y=12 z=12/-->
-				<SCALE x=10.25 y=10.25 z=10.25/>
+				<SCALE x=10.125 y=10.125 z=10.125/>
 				<file name="../../Models/sphere2.obj"/>
 			</scene>
 		</scenes>
 		
 		<viewports>
 			<viewport name="MainViewport">
-				<CLEAR_COLOR r="0.02" g="0.02" b="0.02" />
+				<CLEAR_COLOR r="0.5" g="0.5" b="0.5" />
 			</viewport>
 		</viewports>
 		
@@ -28,19 +28,15 @@
 				<FOV value=60/>
 				<NEAR value= 0.003/>
 				<FAR value= 1000/>
-<<<<<<< HEAD
-				<POSITION x="15" y="0" z="-10" />
-=======
-				<POSITION x=0 y=0 z=-25 />
->>>>>>> carlos
-				<LOOK_AT_POINT x=0 y=0 z=0 />
+				<POSITION x=-10 y=0 z=-15 />
+				<LOOK_AT_POINT x=-1 y=0 z=0 />
 			</camera>
 		</cameras>
 		
 		<lights>
 			<light name="Sun">
 				<POSITION x=0 y=0 z=50 />
-				<DIRECTION x=0 y=0 z=-1 />
+				<DIRECTION x=0 y=0 z=0 />
 			</light>
 		</lights> 
 		
@@ -65,7 +61,6 @@
 						<shader fromMaterial ="GroundFromSpace" fromLibrary="Lighting" />
 						<textures>
 							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
-							<!--texture name="noite" 	fromLibrary="Lighting" toUnit=1/-->
 						</textures>
 					</map>
 					<map toMaterial="sphere2">
