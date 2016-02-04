@@ -47,34 +47,22 @@ public class Init : MonoBehaviour
 
 		mat.SetVector("v3LightPos", m_sun.transform.forward*-1.0f);
 		mat.SetVector("v3InvWavelength", invWaveLength4);
-		Debug.Log("v3InvWavelength " + invWaveLength4);
 		mat.SetFloat("fOuterRadius", m_outerRadius);
-		Debug.Log("fOuterRadius " + m_outerRadius);
 		mat.SetFloat("fOuterRadius2", m_outerRadius*m_outerRadius);
 		mat.SetFloat("fInnerRadius", m_innerRadius);
 		mat.SetFloat("fInnerRadius2", m_innerRadius*m_innerRadius);
 		mat.SetFloat("fKrESun", m_kr*m_ESun);
-		Debug.Log("fKrESun " + m_kr*m_ESun);
 		mat.SetFloat("fKmESun", m_km*m_ESun);
-		Debug.Log("fKmESun " +  m_km*m_ESun);
 		mat.SetFloat("fKr4PI", m_kr*4.0f*Mathf.PI);
-		Debug.Log("fKr4PI " + m_kr*4.0f*Mathf.PI);
 		mat.SetFloat("fKm4PI", m_km*4.0f*Mathf.PI);
-		Debug.Log("fKm4PI " + m_km*4.0f*Mathf.PI);
 		mat.SetFloat("fScale", scale);
-		Debug.Log("fScale " + scale);
 		mat.SetFloat("fScaleDepth", m_scaleDepth);
-		Debug.Log("fScaleDepth " + m_scaleDepth);
 		mat.SetFloat("fScaleOverScaleDepth", scale/m_scaleDepth);
-		Debug.Log("fScaleOverScaleDepth " + scale/m_scaleDepth);
 		mat.SetFloat("fHdrExposure", m_hdrExposure);
 		mat.SetFloat("g", m_g);
 		mat.SetFloat("g2", m_g*m_g);
-		Debug.Log("g2 " + m_g*m_g);
 		mat.SetVector("v3LightPos", m_sun.transform.forward*-1.0f);
-		Debug.Log("v3LightPos " + m_sun.transform.forward*-1.0f);
 		mat.SetVector("v3Translate", transform.localPosition);
-		Debug.Log("v3Translate " + transform.localPosition);
 
 	}
 }
