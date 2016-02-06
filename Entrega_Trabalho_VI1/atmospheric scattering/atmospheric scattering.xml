@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<project name="Atmospheric Scattering" >
+	<assets><!-- width="512" height="512" -->
+		
+		<scenes>
+			<scene name="Earth" param="UNITIZE">
+				<SCALE x=10 y=10 z=10/>
+				<ROTATE x="1" y="0" z="0" w="-90"/>
+				<file name="../../Models/sphere1.obj"/>
+			</scene>
+			<scene name="Atmosphere" param="UNITIZE">
+				<!--SCALE x=12 y=12 z=12/-->
+				<SCALE x=10.25 y=10.25 z=10.25/>
+				<file name="../../Models/sphere2.obj"/>
+			</scene>
+		</scenes>
+		
+		<viewports>
+			<viewport name="MainViewport">
+				<CLEAR_COLOR r="0" g="0" b="0" />
+			</viewport>
+		</viewports>
+		
+		<cameras>
+			<camera name="MainCamera" >
+				<viewport name="MainViewport" />
+				<TYPE value="PERSPECTIVE"/>
+				<FOV value=60/>
+				<NEAR value= 0.03/>
+				<FAR value= 1000/>
+				<POSITION x=0 y=0 z=20/>
+				<LOOK_AT_POINT x=0 y=0 z=0 />
+			</camera>
+		</cameras>
+		
+		<lights>
+			<light name="Sun">
+				<POSITION x=0 y=0 z=50/>
+				<DIRECTION x=0 y=0 z=1/>
+			</light>
+		</lights> 
+		
+		<materialLibs>
+			<materialLib filename="lighting.mlib" />
+		</materialLibs>
+	</assets>
+	
+	<pipelines>
+		<pipeline name="lighting" default="true">
+			<pass class="default" name="pass1">
+				<scenes>
+					<scene name="Earth" />
+					<scene name="Atmosphere" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="sphere1">
+						<shader fromMaterial ="mundo" fromLibrary="Lighting" />
+						<textures>
+							<texture name="mundo_tex" 	fromLibrary="Lighting" toUnit=0/>
+							<texture name="noite" 	fromLibrary="Lighting" toUnit=1/>
+						</textures>
+					</map>
+					<map toMaterial="sphere2">
+						<state name="cull_front" fromLibrary="Lighting" />
+ 						<shader fromMaterial ="SkyFromSpace" fromLibrary="Lighting" />
+					</map>
+				</injectionMaps>
+			</pass>
+		</pipeline>
+	</pipelines>
+</project>

@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<materialLib name="Lighting">
+
+	<textures>
+		<texture 	name="mundo_tex"
+					filename="../../Models/Textures/BlueMarbleCloudy.png"
+					mipmap=true	/>		
+		<texture 	name="noite"
+					filename="../../Models/Textures/earthNight.jpg"
+					mipmap=true	/>	
+	</textures>
+
+	<shaders>
+		<shader name="mundo"
+				vs = "shaders/mundo.vert"
+				ps = "shaders/mundo.frag" />
+				
+		<shader name="SkyFromSpace"
+				vs = "shaders/SkyFromSpace.vert"
+				ps = "shaders/SkyFromSpace.frag" />
+				
+		<shader name="GroundFromSpace"
+				vs = "shaders/GroundFromSpace.vert"
+				ps = "shaders/GroundFromSpace.frag" />
+
+	</shaders>
+	
+	
+	<states>
+		<state name="cull_front">
+			<CULL_TYPE value="FRONT" />
+		</state>
+		<state name="cull_front_and_back">
+			<CULL_TYPE value="FRONT_AND_BACK" />
+		</state>
+	</states>
+	
+	<materials>
+	<material name="SkyFromSpace">
+			<shader name="SkyFromSpace">
+				<values>
+					<valueof uniform="m_pvm" 
+							 block="Matrices"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							
+					<valueof uniform="m_m" 
+							 block="Matrices"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="MODEL" />
+							 
+					<valueof uniform="c_pos"
+							 block="Camera"
+							 type="CAMERA"
+							 context="CURRENT"
+							 component="POSITION" />
+							 
+					<valueof uniform="light_dir" 
+							 block="Lights"
+							 type="LIGHT"
+							 context="Sun"
+							 component="DIRECTION" />
+						
+				</values>
+			</shader>
+		</material>
+		
+		<material name="GroundFromSpace">
+			<shader name="GroundFromSpace">
+				<values>
+					<valueof uniform="m_pvm" 
+							 block="Matrices"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							
+					<valueof uniform="m_viewModel"
+							 block="Matrices"					
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="VIEW_MODEL" />
+							 
+					<valueof uniform="c_pos"
+							 block="Camera"
+							 type="CAMERA"
+							 context="CURRENT"
+							 component="POSITION" />
+							 
+					<valueof uniform="light_dir" 
+							 block="Lights"
+							 type="LIGHT"
+							 context="Sun"
+							 component="DIRECTION" />		
+					
+					<valueof uniform="mundo_tex" 
+							 type="MATERIAL_TEXTURE"
+							 context="CURRENT" 
+							 component="UNIT"
+							 id=0 />
+						
+				</values>
+			</shader>
+			
+			<textures>
+				<texture UNIT="0" name="mundo_tex"/>
+			</textures>
+		</material>
+	
+		<material name="mundo">
+			<shader name="mundo">
+				<values>
+					<valueof uniform="PVM" 
+							 block="Matrices2"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="PROJECTION_VIEW_MODEL" />
+							 
+					<valueof uniform="VM" 
+							 block="Matrices2"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="VIEW_MODEL" />
+							 
+					<valueof uniform="V" 
+							 block="Matrices2"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="VIEW" />
+							 
+					<valueof uniform="mat_normal"
+							 block="Matrices2"
+							 type="RENDERER"
+							 context="CURRENT" 
+							 component="NORMAL" />
+							 
+					<valueof uniform="light_pos" 
+							 block="Lights"
+							 type="LIGHT"
+							 context="Sun"
+							 component="POSITION" />
+							 
+					<valueof uniform="mundo_tex" 
+							 type="MATERIAL_TEXTURE"
+							 context="CURRENT" 
+							 component="UNIT"
+							 id=0 />
+							 
+					<valueof uniform="noite" 
+							 type="MATERIAL_TEXTURE"
+							 context="CURRENT" 
+							 component="UNIT"
+							 id=1 />
+
+				</values>
+			</shader>
+			
+			<textures>
+				<texture UNIT="0" name="mundo_tex"/>
+				<texture UNIT="1" name="noite"/>
+			</textures>
+		</material>
+					
+		
+	</materials>
+</materialLib>
